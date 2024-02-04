@@ -1,0 +1,73 @@
+void set_full_scree(){
+    char *video_memory = (char*) 0xb8000;
+    int i =1;
+    while(i<(2*80*25)){
+        *(video_memory+i) = 0xd5;
+        i+=2;
+    }
+}
+
+void set_j(){
+    char *video_memory = (char*) 0xb8000;
+    int i =0;
+    while(i<(2*80)){
+        *(video_memory+i) ='J';
+        *(video_memory+i+1) =0x15;
+        i+=2;
+    }
+}
+
+void color_strip(){
+    char* TM_START = (char *) 0xb8000;
+    int i = 1;
+    char co =0;
+    while(i<2*80*25){
+        *(TM_START+i) = co;
+        i +=2;
+        co++;
+    }
+}
+
+void color_rectangle(){
+    char* TM_START = (char *) 0xb8000;
+    int i = 1;
+    char obj =0;
+    while(i<2*80*25){
+        *(TM_START+i) = obj;
+        i +=2;
+        obj += 15;
+    }
+}
+
+void color_small_rect(){
+    char* TM_START = (char *) 0xb8000;
+    int i = 1;
+    char obj =0;
+    while(i<2*80*25){
+        *(TM_START+i) = obj;
+        i +=2;
+        obj += 100;
+    }
+}
+
+void color_char(){
+    char* TM_START = (char *) 0xb8000;
+    int i = 1;
+    char obj =0;
+    while(i<2*80*25){
+        *(TM_START+i) = obj;
+        i ++;
+        obj ++;
+    }
+}
+
+void main(){
+    color_char();
+    // color_small_rect();
+    // color_rectangle();
+    // color_strip();
+    // set_j();
+    // set_full_scree();
+    // char *video_memory = (char*) 0xb8000;
+    // *video_memory = 'X';
+}
