@@ -5,3 +5,5 @@
 
 ## WSL + QEMU + gdb debug
 https://wiki.osdev.org/How_Do_I_Use_A_Debugger_With_My_OS
+qemu -s -S binfile, 设置gdb 的断点
+使用gdb load elf, 读取symbol file
