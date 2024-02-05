@@ -1,3 +1,5 @@
+#include "util.h"
+
 void memory_copy(char * source, char* dest, int nbyte){
     int i;
     for(int i=0; i<nbyte; i++){
@@ -5,7 +7,13 @@ void memory_copy(char * source, char* dest, int nbyte){
     }
 }
 
-void int_to_ascii(int n, char str[]){
+void memory_set(u8 *dest, u8 val, u32 len) {
+    u8 *temp = (u8 *)dest;
+    for ( ; len != 0; len--) *temp++ = val;
+}
+
+
+void int_to_ascii(int n, char str[]) {
     int i, sign;
     if ((sign = n) < 0) n = -n;
     i = 0;
@@ -15,4 +23,6 @@ void int_to_ascii(int n, char str[]){
 
     if (sign < 0) str[i++] = '-';
     str[i] = '\0';
+
+    /* TODO: implement "reverse" */
 }

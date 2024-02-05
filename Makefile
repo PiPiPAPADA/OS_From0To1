@@ -1,6 +1,6 @@
-C_SOURCES = $(wildcard kernel/*.c drives/*.c)
-HEADERS = $(wildcard kernel/*.h drives/*.h)
-OBJ = ${C_SOURCES:.c=.o}
+C_SOURCES = $(wildcard kernel/*.c drives/*.c cpu/*.c)
+HEADERS = $(wildcard kernel/*.h drives/*.h cpu/*.h)
+OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 # -g: Use debugging symbols in gcc
 CFLAGS = -g 
 
