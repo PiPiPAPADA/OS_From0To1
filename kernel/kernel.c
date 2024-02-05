@@ -1,11 +1,13 @@
 #include "../drives/screen.h"
-#include "util.h"
 #include "../cpu/isr.h"
-#include "../cpu/idt.h"
+#include "../cpu/timer.h"
+#include "../drives/keyboard.h"
 
 void main(){
     isr_install();
     /* Test the interrupts */
-    __asm__ __volatile__("int $2");
-    __asm__ __volatile__("int $3");
+     asm volatile("sti");
+    // init_timer(50);
+    init_keyboard();
+
 }
