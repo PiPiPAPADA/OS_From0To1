@@ -2,8 +2,7 @@ C_SOURCES = $(wildcard kernel/*.c drives/*.c cpu/*.c libc/*.c)
 HEADERS = $(wildcard kernel/*.h drives/*.h cpu/*.h libc/*.h)
 OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 # -g: Use debugging symbols in gcc
-CFLAGS = -g  -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs \
-		 -Wall -Wextra -Werror
+CFLAGS = -g  -m32 -fno-pic  -ffreestanding   -Wall -Wextra -fno-exceptions
 
 
 all: os-image.bin
@@ -28,7 +27,7 @@ debug: os-image.bin kernel.elf
 # Generic rules for wildcards
 # To make an object, always compile from its .c
 %.o: %.c ${HEADERS}
-	gcc ${CFLAGS} -fno-pic -m32 -ffreestanding -c $< -o $@
+	gcc ${CFLAGS}  -c $< -o $@
 
 %.o: %.asm
 	nasm $< -f elf -I boot -o $@
