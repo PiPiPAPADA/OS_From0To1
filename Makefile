@@ -1,8 +1,10 @@
-C_SOURCES = $(wildcard kernel/*.c drives/*.c cpu/*.c)
-HEADERS = $(wildcard kernel/*.h drives/*.h cpu/*.h)
+C_SOURCES = $(wildcard kernel/*.c drives/*.c cpu/*.c libc/*.c)
+HEADERS = $(wildcard kernel/*.h drives/*.h cpu/*.h libc/*.h)
 OBJ = ${C_SOURCES:.c=.o cpu/interrupt.o}
 # -g: Use debugging symbols in gcc
-CFLAGS = -g 
+CFLAGS = -g  -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs \
+		 -Wall -Wextra -Werror
+
 
 all: os-image.bin
 #build kernel binary $^ substituted all dependency file
@@ -36,5 +38,5 @@ debug: os-image.bin kernel.elf
 
 clean:	
 	rm -rf *.bin *.o *.elf
-	rm -rf boot/*.o boot/*.bin  kernel/*.o drives/*.o
+	rm -rf boot/*.o boot/*.bin  kernel/*.o drives/*.o libc/*.o
 
