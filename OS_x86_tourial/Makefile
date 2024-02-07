@@ -34,21 +34,25 @@ clean:
 
 .PHONY: update_image
 update_image:
-	mount floppy.img /mnt/c/OS/os_github/OS_From0To1/kernel 
-	cp tiny_kernel /mnt/c/OS/os_github/OS_From0To1/kernel/tiny_kernel
+	mount floppy.img /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel 
+	cp tiny_kernel /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel/tiny_kernel
 	sleep 1
-	umount /mnt/c/OS/os_github/OS_From0To1/kernel
+	umount /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel
 
 .PHONY: mount_image
-	mount floppy.img /mnt/c/OS/os_github/OS_From0To1/kernel
+mount_image:
+	mount floppy.img /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel
 
 .PHONY: umount_image
-	umount /mnt/c/OS/os_github/OS_From0To1/kernel
+umount_image:
+	umount /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel
 
 .PHONY: qemu
+qemu:
 	qemu-system-i386 -fda floppy.img -boot a 
 
 .PHONY: debug 
+debug:
 	qemu-system-i386 -s -S -fda floppy.img -boot a &
 	sleep 1 
 	gdb -x tools/gdbinit 

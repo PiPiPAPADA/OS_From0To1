@@ -1,4 +1,4 @@
-// link script
+/*link script*/
 
 ENTRY(start)
 SECTIONS
