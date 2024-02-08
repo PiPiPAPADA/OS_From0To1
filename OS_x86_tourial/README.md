@@ -11,3 +11,5 @@
             -nostdinc 不包含c语言的标准库里的文件
             -fno-builtin gcc 不主动使用自己的内建函数，除非显式声明
             -fno-stack-protector 不使用栈保护保护检测
+## floppy disk
+    Linux需要制作一个GRUB的启动盘，目前使用的是hx制作的，所以makefile中的target是hx_kernel https://github.com/hurley25/hurlex-doc/tree/master

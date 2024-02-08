@@ -26,26 +26,26 @@ all: $(S_OBJECTS) $(C_OBJECTS) link update_image
 
 link:
 	@echo Link Kernel file 
-	$(LD) $(LD_FLAGS) $(S_OBJECTS) $(C_OBJECTS) -o tiny_kernel 
+	$(LD) $(LD_FLAGS) $(S_OBJECTS) $(C_OBJECTS) -o hx_kernel 
 
 .PHONY:clean
 clean:
-	$(RM) $(S_OBJECTS) $(C_OBJECTS) tiny_kernel
+	$(RM) $(S_OBJECTS) $(C_OBJECTS) hx_kernel
 
 .PHONY: update_image
 update_image:
-	mount floppy.img /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel 
-	cp tiny_kernel /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel/tiny_kernel
+	mount floppy.img floppy -o loop
+	cp hx_kernel floppy
 	sleep 1
-	umount /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel
+	umount floppy
 
 .PHONY: mount_image
 mount_image:
-	mount floppy.img /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel
+	mount floppy.img floppy
 
 .PHONY: umount_image
 umount_image:
-	umount /mnt/c/OS/os_github/OS_From0To1/OS_x86_tourial/kernel
+	umount floppy
 
 .PHONY: qemu
 qemu:

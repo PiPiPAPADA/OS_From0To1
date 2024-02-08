@@ -52,3 +52,4 @@ Module.symvers
 Mkfile.old
 dkms.conf
 hx_kernel
+tiny_kernel
