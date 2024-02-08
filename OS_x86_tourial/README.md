@@ -19,4 +19,6 @@
     va_arg(p, next) (*(next*)((p += sizeof(next) ) 􀀀 sizeof(next)))
     va_end(p) (p = (va_list)NULL)
 ## debug info
+    boot    将ebx存储的指针放在mult boot struct 指针
+    ELF 从multboot中获取信息
     
