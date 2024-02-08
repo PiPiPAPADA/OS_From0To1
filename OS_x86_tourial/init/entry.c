@@ -1,6 +1,8 @@
 #include "console.h"
 #include "debug.h"
 #include "gdt.h"
+#include "idt.h"
+#include "timer.h"
 
 int kernel_entry(){
     init_debug();
@@ -8,8 +10,8 @@ int kernel_entry(){
     init_idt();
     console_clear();
     printk_color(rc_black,rc_cyan,"HALO, Os Kernel\n");
-    asm volatile ("int $0x3");
-	asm volatile ("int $0x4");
+    init_timer(200);
+    asm volatile("sti");
     // panic("test");
     // console_write_color("HALO,OS kernel!\n",rc_black,rc_green);
     return 0;
