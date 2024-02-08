@@ -13,3 +13,10 @@
             -fno-stack-protector 不使用栈保护保护检测
 ## floppy disk
     Linux需要制作一个GRUB的启动盘，目前使用的是hx制作的，所以makefile中的target是hx_kernel https://github.com/hurley25/hurlex-doc/tree/master
+## 库函数
+    va_list -> char * gcc 内建
+    va_start(p, first) (p = (va_list)&first + sizeof(first))
+    va_arg(p, next) (*(next*)((p += sizeof(next) ) 􀀀 sizeof(next)))
+    va_end(p) (p = (va_list)NULL)
+## debug info
+    
