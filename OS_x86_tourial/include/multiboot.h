@@ -81,6 +81,9 @@ struct mmap_entry_t {
 	uint32_t type;
 } __attribute__((packed)) mmap_entry_t;
 
+//页表未建立之前暂存指针
+extern multiboot_t *mboot_ptr_tmp;
+
 // 声明全局的 multiboot_t * 指针
 extern multiboot_t *glb_mboot_ptr;
 
