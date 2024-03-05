@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "idt.h"
-#include "pmm.h"
+#include "vmm.h"
 
 #define PAGE_OFFSET      0xC0000000
 /**
@@ -66,6 +66,6 @@ void map(pgd_t *pgd_now, uint32_t va, uint32_t pa, uint32_t flags);
 uint32_t get_mapping(pgd_t *pgd_now,uint32_t va, uint32_t *pa);
 //page fault
 void page_fault(pt_regs *regs);
-
+void unmap(pgd_t *pgd_now, uint32_t va);
 
 #endif

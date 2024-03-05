@@ -5,15 +5,20 @@
 ;                 这里还有根据 GRUB Multiboot 规范的一些定义
 ;
 ; ----------------------------------------------------------------
-MBOOT_HEADER_MAGIC      equ       0x1BADB002  ; multiboot magic number
-MBOOT_PAGE_ALIGN        equ       1 << 0      ; 0 means 4kB align
-MBOOT_MEM_INFO          equ       1 << 1      ; mem_* 包括可用内存的信息，告诉GRUB把内存空间信息包含在multiboot信息结构中
+MBOOT_HEADER_MAGIC 	equ 	0x1BADB002 	; Multiboot 魔数，由规范决定的
 
-; define multiboot token
-MBOOT_HEADER_FLAGS      equ       MBOOT_PAGE_ALIGN | MBOOT_MEM_INFO
+MBOOT_PAGE_ALIGN 	equ 	1 << 0    	; 0 号位表示所有的引导模块将按页(4KB)边界对齐
+MBOOT_MEM_INFO 		equ 	1 << 1    	; 1 号位通过 Multiboot 信息结构的 mem_* 域包括可用内存的信息
+						; (告诉GRUB把内存空间的信息包含在Multiboot信息结构中)
 
-; magic + flags + checksum =0
-MBOOT_CHECKSUM          equ       -(MBOOT_HEADER_MAGIC + MBOOT_HEADER_FLAGS)
+; 定义我们使用的 Multiboot 的标记
+MBOOT_HEADER_FLAGS 	equ 	MBOOT_PAGE_ALIGN | MBOOT_MEM_INFO
+
+; 域checksum是一个32位的无符号值，当与其他的magic域(也就是magic和flags)相加时，
+; 要求其结果必须是32位的无符号值 0 (即magic + flags + checksum = 0)
+MBOOT_CHECKSUM 		equ 	- (MBOOT_HEADER_MAGIC + MBOOT_HEADER_FLAGS)
+
+; 符合Multiboot规范的 OS 映象需要这样一个 magic Multiboot 头
 
 ; Multiboot 头的分布必须如下表所示：
 ; ----------------------------------------------------------
@@ -28,9 +33,11 @@ MBOOT_CHECKSUM          equ       -(MBOOT_HEADER_MAGIC + MBOOT_HEADER_FLAGS)
 
 ;-----------------------------------------------------------------------------
 
-[BITS 32] ;32 bit compile
+[BITS 32]  	; 所有代码以 32-bit 的方式编译
 
-section .init.text ;
+section .init.text 	; 临时代码段从这里开始
+
+; 在代码段的起始位置设置符合 Multiboot 规范的标记
 
 dd MBOOT_HEADER_MAGIC 	; GRUB 会通过这个魔数判断该映像是否支持
 dd MBOOT_HEADER_FLAGS   ; GRUB 的一些加载时选项，其详细注释在定义处

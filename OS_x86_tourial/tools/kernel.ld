@@ -3,19 +3,20 @@
 ENTRY(start)
 SECTIONS
 {
-	PROVIDE( kern_start = 0xC0100000 );
-	. = 0x100000;
-    .init_text :
-    {
-        *(.init_text)
-        . = ALIGN(4096);
-    }
-    .init_data :
-    {
-        *(.init_data)
-        . = ALIGN(4096);
-    }
-    . += 0xC0000000;
+	PROVIDE( kern_start = 0xC0100000);
+	. = 0x100000; 
+	.init.text : 
+	{
+		*(.init.text)
+		. = ALIGN(4096);
+	}
+	.init.data : 
+	{
+		*(.init.data)
+		. = ALIGN(4096);
+	}
+
+	. += 0xC0000000;
 	.text : AT(ADDR(.text) - 0xC0000000)
 	{
 		*(.text)
@@ -43,6 +44,6 @@ SECTIONS
 	 	. = ALIGN(4096);
 	}
 	PROVIDE( kern_end = . );
-
+	
 	/DISCARD/ : { *(.comment) *(.eh_frame) }
 }

@@ -31,7 +31,7 @@ void init_pmm(){
             //page store into page stack
             uint32_t page_addr = map_entry->base_addr_low + (uint32_t) (kern_end - kern_start);
             uint32_t length = map_entry->base_addr_low + map_entry->length_low;
-            while(page_addr < length && page_addr <PMM_MAX_SIZE){
+            while(page_addr < length && page_addr <= PMM_MAX_SIZE){
                 pmm_free_page(page_addr);
                 page_addr += PMM_PAGE_SIZE;
                 phy_page_count ++;

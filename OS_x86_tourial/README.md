@@ -11,6 +11,7 @@
             -nostdinc 不包含c语言的标准库里的文件
             -fno-builtin gcc 不主动使用自己的内建函数，除非显式声明
             -fno-stack-protector 不使用栈保护保护检测
+            -fno-pic 生成的代码是位置无关码
 ## floppy disk
     Linux需要制作一个GRUB的启动盘，目前使用的是hx制作的，所以makefile中的target是hx_kernel https://github.com/hurley25/hurlex-doc/tree/master
 ## 库函数
@@ -35,3 +36,5 @@
     虚拟页面 PAGE size 4KB, 物理内存也按照页管理，VA->PA的页目录和页表组成二级页表，页目录的地址位置在CR3寄存器中
     linux中采取的映射，把物理地址0从虚拟地址0xC000000（3GB）处开始往上映射，只用512MB, 所以3-4G完全映射全部的物理地址，物理地址+0xC000000 = 内核虚拟地址
     VMA (virtual memory address) LMA(load memory address) VMA是链接器生成可执行文件时的偏移计算地址，LMA是区段所载入内存的实际地址，通常情况下，VMA = LMA
+    按页管理，分配小内存的时候比较容易造成内存碎片
+    堆管理，小内存分配，简单的分配内存外，考虑内存释放的时候，对连续的内存进行合并，简单的侵入式链表管理

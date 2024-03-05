@@ -10,7 +10,7 @@ LD = ld
 ASM = nasm 
 
 
-CFLAGS = -c -Wall -m32 -ggdb -gstabs+ -nostdinc -fno-builtin -fno-builtin -fno-stack-protector -I include
+CFLAGS = -c -Wall -m32 -ggdb -gstabs+ -nostdinc -fno-pic -fno-builtin -fno-stack-protector -I include
 LD_FLAGS = -T tools/kernel.ld -m elf_i386 -nostdlib
 ASM_FLAGS = -f elf -g -F stabs
 
