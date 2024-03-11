@@ -6,6 +6,8 @@
 //内核文件的起始结束地址，在链接器中要求链接器重新定义
 extern uint8_t kern_start[];
 extern uint8_t kern_end[];
+extern uint32_t kern_stack_top;
+
 extern uint32_t phy_page_count;
 
 //输出BIOS提供的物理内存布局

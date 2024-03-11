@@ -9,5 +9,8 @@ uint8_t inb(uint16_t port);
 // 读一个字
 uint16_t inw(uint16_t port);
 
+void enable_intr();
+void disable_intr();
+
 
 #endif
